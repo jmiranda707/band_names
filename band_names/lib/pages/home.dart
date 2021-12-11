@@ -42,15 +42,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  ListTile _listTileBand(Band banda) {
-    return ListTile(
-      onTap: () {},
-      leading: CircleAvatar(
-        backgroundColor: Colors.red,
-        child: Text(banda.name.substring(0, 1)),
+  Widget _listTileBand(Band banda) {
+    return Dismissible(
+      key: Key(banda.id),
+      direction: DismissDirection.startToEnd,
+      background: Container(
+        color: Colors.red,
       ),
-      title: Text(banda.name),
-      trailing: Text(banda.votes.toString()),
+      onDismissed: (deleted) {
+        print('eliminado banda');
+      },
+      child: ListTile(
+        onTap: () {},
+        leading: CircleAvatar(
+          backgroundColor: Colors.red,
+          child: Text(banda.name.substring(0, 1)),
+        ),
+        title: Text(banda.name),
+        trailing: Text(banda.votes.toString()),
+      ),
     );
   }
 
